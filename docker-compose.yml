@@ -1,0 +1,40 @@
+version: "2.4"
+services:
+  nifi:
+    build: .
+    restart: always
+    environment:
+      - NIFI_WEB_HTTPS_PORT=9443
+      - NIFI_WEB_HTTPS_HOST=nifi.stoutagtech.dev
+      - NIFI_REMOTE_INPUT_HOST=
+      - NIFI_REMOTE_INPUT_SOCKET_PORT=10000
+      - KEYSTORE_TYPE=JKS
+      - KEYSTORE_PATH=${NIFI_HOME}/tls/keystore.jks
+      - KEYSTORE_PASSWORD=stoutagtechnifi20220131
+      - TRUSTSTORE_TYPE=JKS
+      - TRUSTSTORE_PATH=${NIFI_HOME}/tls/truststore.jks
+      - TRUSTSTORE_PASSWORD=stoutagtechnifi20220131
+      - AUTH=tls
+      - INITIAL_ADMIN_IDENTITY=CN=admin, OU=NIFI
+      - NIFI_SENSITIVE_PROPS_KEY=stoutagtechnifi20220131
+      - NIFI_JVM_HEAP_INIT=4096m
+      - NIFI_JVM_HEAP_MAX=12288m
+    hostname: nifi.stoutagtech.dev
+    ports:
+      - 9443:9443
+      - 10000:10000
+      - 11000:11000
+    volumes:
+      - ./nifi-toolkit-1.15.3/tls/nifi.stoutagtech.dev:${NIFI_HOME}/tls
+      - ./schema:/schema
+      - ./script:/script
+      - /data/with-machine-use-id/bin:/data/src
+      - /home/ubuntu/efs/nifi/data:/data/dst
+      - /home/ubuntu/efs/nifi/flowfile_repository:${NIFI_HOME}/flowfile_repository
+      - /home/ubuntu/efs/nifi/content_repository:${NIFI_HOME}/content_repository
+      - /home/ubuntu/efs/nifi/provenance_repository:${NIFI_HOME}/provenance_repository
+      - /home/ubuntu/efs/nifi/database_repository:${NIFI_HOME}/database_repository
+      - /home/ubuntu/efs/nifi/state:${NIFI_HOME}/state
+      - /home/ubuntu/efs/nifi/logs:${NIFI_HOME}/logs
+      - /home/ubuntu/efs/nifi/conf/flow.xml.gz:${NIFI_HOME}/conf/flow.xml.gz
+      - /home/ubuntu/efs/nifi/conf/archive:${NIFI_HOME}/conf/archive

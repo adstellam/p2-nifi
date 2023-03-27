@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package vision;
+
+enum MachineType {
+    UNKNOWN = 0;
+    CULTIVATOR = 1;
+    DATACART = 2;
+    SPRAYER = 3;
+}
+
+// Detections are in pixel space
+message Detection {
+    int32 klass = 1;
+    int32 top = 2;
+    int32 left = 3;
+    int32 width = 4;
+    int32 height = 5;
+    float confidence = 6;
+    int32 plant_line = 7;
+    int32 frame_id = 8;
+}
+
+message Machine {
+    string name = 1;
+    int32 frame_id = 2;
+    int32 camera_id = 3;
+    float width_meter = 4;
+    int32 commodity_class_id = 7;
+    float line_spacing_meter = 8;
+    float plant_spacing_meter = 9;
+    float confidence_threshold = 10;
+    // Specific to the current camera_id, all cameras on a given
+    //  machine may not have the same number of lanes.
+    int32 plant_line_count = 11;
+    MachineType machine_type = 12;
+    int32 machine_id = 13;
+    reserved 15 to 20;
+
+    // These tend to be fixed.
+    int32 width_pixel = 21;
+    int32 height_pixel = 22;
+    float fov_height_degree = 23;
+    float buffer_distance_meter = 24;
+    float lens_working_dist_meter = 25;
+    float detection_rate_threshold = 26;
+    float camera_height_setpoint_meter = 27;
+    string model_version = 28;
+    string ssid = 35;
+    string wifi_password = 36;
+    reserved 37 to 40;
+
+    float max_side_shift_travel_meter = 44;
+    float max_side_shift_travel_pixel = 45;
+    repeated float roi_center_meter = 46;
+    repeated float roi_min_pixel = 47;
+    repeated float roi_center_pixel = 48;
+    repeated float roi_max_pixel = 49;
+}
+
+message MachineState {
+    int32 frame_id = 1;
+    bool lifted = 2;
+    reserved 3;
+    int32 operatorFlag = 4;
+    float odometer_meter = 5;
+    int32 error = 6;
+    reserved 7 to 8;
+    double gmt_time_s = 9;
+    double monotonic_time_s = 10;
+    float frame_per_second = 11;
+    float odometer_meter_per_second = 12;
+    MachineType machine_type = 13;
+    int32 machine_id = 14;
+    int32 camera_id = 15;
+    reserved 16 to 40;
+
+    float side_shift_meter = 41;
+    float side_shift_pixel = 42;
+    repeated float missed_plant_rate = 43;
+}
+
+message Plant {
+    enum Phase {
+        READY_TO_SEND = 0;
+        ACTIVE = 1;
+        COMPLETED = 2;
+    }
+
+    int32 id = 1;
+    int32 klass = 2;
+    float confidence = 3;
+    float odometer_meter = 4;
+    float side_shift_pixel = 5;
+    float center_x_filtered_pixel = 6;
+    float center_y_filtered_pixel = 7;
+    reserved 8;
+    float width_meter = 9;
+    float height_meter = 10;
+    float width_pixel = 11;
+    float height_pixel = 12;
+    double gmt_time_s = 13;
+    double monotonic_time_s = 14;
+    float side_shift_meter = 15;
+    MachineType machine_type = 16;
+    int32 machine_id = 17;
+    int32 camera_id = 18;
+    reserved 19 to 50;
+
+    // Debug
+    Phase phase = 51;
+    int32 plant_line = 52;
+    bool detection_valid = 53;
+    float vx_pixel_second = 54;
+    float vy_pixel_second = 55;
+    int32 correction_count = 56;
+    int32 detection_x_pixel = 57;
+    int32 detection_y_pixel = 58;
+    float odometer_expiration_meter = 59;
+    repeated Detection detection = 60;
+}
+
+message Frame {
+    int32 id = 1;
+    float optical_x_meter_per_second = 2;
+    float optical_y_meter_per_second = 3;
+    repeated Plant plants = 4;
+    repeated Detection detections = 5;
+    double latency_s = 6;
+    double interval_s = 7;
+    MachineType machine_type = 12;
+    int32 machine_id = 13;
+    int32 camera_id = 14;
+}
+
+message GpsPosition {
+    double monotonic_time_s = 1;
+    double gmt_time_s = 2;
+    double latitude = 3;
+    double longitude = 4;
+    float heading = 5;
+    int32 itow = 6;
+    float odometer_meter = 7;
+    MachineType machine_type = 8;
+    int32 machine_id = 9;
+}

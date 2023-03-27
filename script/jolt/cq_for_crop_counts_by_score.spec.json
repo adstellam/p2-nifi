@@ -1,0 +1,32 @@
+[
+    {
+        "operation": "default",
+        "spec": {
+            "measures": ["MachineObsData.cropCount"],
+            "dimensions": ["MachineObsData.cropScoreBand"],
+            "member": "MachineObsData.machineUseId",
+            "operator": "equals"
+        }
+    },
+    {
+        "operation": "shift",
+        "spec": {
+            "measures": "query.&",
+            "dimensions": "query.&",
+            "member": "query.filters.&",
+            "operator": "query.filters.&",
+            "id": "query.filters.values[]"
+        }
+    },
+    {
+        "operation": "shift",
+        "spec": {
+            "query": {
+                "measures": "&1.&",
+                "dimensions": "&1.&",
+                "filters": "&1.&[]"
+            }
+        }
+    }
+]
+  

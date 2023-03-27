@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  nifi:
+    build: .
+    restart: always
+    environment:
+      - NIFI_WEB_HTTP_HOST=localhost
+      - NIFI_WEB_HTTP_PORT=8080
+      - NIFI_REMOTE_INPUT_HOST=
+      - NIFI_REMOTE_INPUT_SOCKET_PORT=10000
+    network_mode: host
+    volumes:
+      - ./schema/:/opt/nifi/nifi-current/schema
+      - ./script:/opt/nifi/nifi-current/script
+      - ./data:/data
+      - ./logs:/opt/nifi/nifi-current/logs

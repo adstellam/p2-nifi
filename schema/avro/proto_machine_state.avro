@@ -1,0 +1,21 @@
+{
+    "name": "proto_machine_state",
+    "type": "record",
+    "fields": [
+        { "name": "frame_id", "type": "int" },
+        { "name": "lifted", "type": "boolean" },
+        { "name": "phase", "type": {"name": "proto_machine_state_enum", "type": "enum", "symbols": ["RUNNING", "STOPPED", "STARTING"]} },
+        { "name": "operator_flag", "type": "int" },
+        { "name": "odometer_meter", "type": "float" },
+        { "name": "error", "type": "int" },
+        { "name": "voltage", "type": "float" },
+        { "name": "oil_temp", "type": "float" },
+        { "name": "gmt_time_ns", "type": "double" },
+        { "name": "monotonic_time_ns", "type": "double" },
+        { "name": "frame_per_second", "type": "float" },
+        { "name": "side_shift_meter", "type": "float" },
+        { "name": "side_shift_pixel", "type": "float" },
+        { "name": "detection_rate", "type": {"type": "array", "items": "float"} },
+        { "name": "missed_plant_rate", "type": {"type": "array", "items": "float"} }
+    ]
+}

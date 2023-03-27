@@ -1,0 +1,34 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "data": "&",
+      "query": {
+        "filters": {
+          "*": {
+            "values": {
+              "*": "id"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "operation": "shift",
+    "spec": {
+      "data": {
+        "*": {
+          "y": "&2.@(1,x)"
+        }
+      },
+      "id": "&"
+    }
+  },
+  {
+    "operation": "default",
+    "spec": {
+      "data": "{}"
+    }
+  }
+]

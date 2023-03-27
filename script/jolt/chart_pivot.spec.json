@@ -1,0 +1,18 @@
+[
+    {
+      "operation": "modify-overwrite-beta",
+      "spec": {
+        "*": {
+          "x": "=toInteger"
+        }
+      }
+    },
+    {
+      "operation": "shift",
+      "spec": {
+        "*": {
+          "*": "&"
+        }
+      }
+    }
+]

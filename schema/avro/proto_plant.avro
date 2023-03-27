@@ -1,0 +1,29 @@
+{
+    "name": "proto_plant",
+    "type": "record",
+    "fields": [
+        { "name": "id", "type": "int", "default": 0 },
+        { "name": "klass", "type": {"type": "array", "items": "int"} },
+        { "name": "confidence", "type": {"type": "array", "items": "float"} },
+        { "name": "side_shift_pixel", "type": "float" },
+        { "name": "center_x_filtered_pixel", "type": "float" },
+        { "name": "center_y_filtered_pixel", "type": "float" },
+        { "name": "shape", "type": "float" },
+        { "name": "width_meter", "type": "float" },
+        { "name": "height_meter", "type": "float" },
+        { "name": "width_pixel", "type": "float" },
+        { "name": "height_pixel", "type": "float" },
+        { "name": "gmt_time_ns", "type": "double" },
+        { "name": "monotonic_time_ns", "type": "double" },
+        { "name": "side_shift_meter", "type": "float" },
+        { "name": "phase", "type": {"name": "proto_plant_enum", "type": "enum", "symbols": ["READY_TO_SEND", "ACTIVE", "COMPLETED"]} },
+        { "name": "plant_line", "type": "int" },
+        { "name": "detection_valid", "type": "boolean" },
+        { "name": "vx_pixel_second", "type": "float" },
+        { "name": "vy_pixel_second", "type": "float" },
+        { "name": "correction_count", "type": "int" },
+        { "name": "detection_x_pixel", "type": "int" },
+        { "name": "detection_y_pixel", "type": "int" },
+        { "name": "odometer_expiration_meter", "type": "float" }
+    ]
+}

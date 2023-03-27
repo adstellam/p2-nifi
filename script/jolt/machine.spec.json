@@ -1,0 +1,18 @@
+[
+    {
+      "operation": "modify-overwrite-beta",
+      "spec": {
+        "machineName": "=toLower",
+        "machineUseIdAlt": "=toLower",
+        "widthMeter": ["=toDouble", null],
+        "plantLineCount": ["=toInteger", null],
+        "lineSpacingMeter": ["=toDouble", null],
+        "plantSpacingMeter": ["=toDouble", null],
+        "bufferDistanceMeter": ["=toDouble", null],
+        "lensWorkingDistMeter": ["=toDouble", null],
+        "maxSideShiftTravelMeter": ["=toDouble", null],
+        "fovHeightDegree": ["=toDouble", null],
+        "detectionRateThreshold": ["=toDouble", null]
+      }
+    }
+  ]

@@ -1,0 +1,20 @@
+[
+    {
+      "operation": "modify-overwrite-beta",
+      "spec": {
+        "machineName": "=toLower",
+        "cameraId": ["=toInteger", 0],
+        "gmtTimeS": ["=toDouble", null],
+        "plantLine": ["=toDouble", 0]
+      }
+    },
+    {
+        "operation": "shift",
+        "spec": {
+            "machineName": "machine_name",
+            "cameraId": "camera_id",
+            "gmtTimeS": "gmt_time_s",
+            "plantLine": "plant_line"
+        }
+    }
+]

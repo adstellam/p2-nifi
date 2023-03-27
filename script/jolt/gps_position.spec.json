@@ -1,0 +1,13 @@
+[
+  {
+    "operation": "modify-overwrite-beta",
+    "spec": {
+      "machineName": "=toLower",
+      "gmtTimeS": ["=toDouble", null],
+      "longitude": ["=toDouble", null],
+      "latitude": ["=toDouble", null],
+      "heading": ["=toDouble", null],
+      "itow": ["=toInteger", null]
+    }
+  }
+]

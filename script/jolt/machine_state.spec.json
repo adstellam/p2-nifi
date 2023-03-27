@@ -1,0 +1,12 @@
+[
+  {
+    "operation": "modify-overwrite-beta",
+    "spec": {
+      "machineName": "=toLower",
+      "gmtTimeS": ["=toDouble", null],
+      "lifted": ["=toBoolean", null],
+      "odometerMeter": ["=toDouble", 0],
+      "odometerMeterPerSecond": ["=toDouble", 0]
+    }
+  }
+]

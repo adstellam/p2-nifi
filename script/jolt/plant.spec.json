@@ -1,0 +1,19 @@
+[
+  {
+    "operation": "modify-overwrite-beta",
+    "spec": {
+      "machineName": "=toLower",
+      "machineUseIdAlt": "=toLower",
+      "cameraId": ["=toInteger", 0],
+      "gmtTimeS": ["=toDouble", null],
+      "klass": ["=toInteger", 0],
+      "confidence": ["=toDouble", null],
+      "widthMeter": ["=toDouble", null],
+      "heightMeter": ["=toDouble", null],
+      "odometerMeter": ["=toDouble", null],
+      "plantLine": ["=toDouble", 0],
+      "cropScore": ["=toInteger", null]
+    }
+  }
+]
+
